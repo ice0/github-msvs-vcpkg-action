@@ -34,8 +34,9 @@ jobs:
       - name: dir
         shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        - run: dir
-        - run: echo "hello"
+        run: | 
+          dir
+          echo "hello"
         #- run: echo ${{ matrix.os }}
         #- run: echo ${{ matrix.allow_failures }}
 
