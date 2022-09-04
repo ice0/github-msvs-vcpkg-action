@@ -47,7 +47,6 @@ jobs:
           dir %VCPKG_DEFAULT_BINARY_CACHE%
 
       - name: Every time
-        run: echo "This step will always run"
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
