@@ -19,6 +19,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.allow_failures }}
     name: ${{ matrix.name }}
+    shell: cmd
     strategy:
       matrix:
         include:
@@ -27,7 +28,6 @@ jobs:
           allow_failures: false
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    shell: cmd
     steps:
       #shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
