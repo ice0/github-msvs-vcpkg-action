@@ -2,7 +2,7 @@
 
 name: MSVS 2022/vcpkg (2022.08.15)
 
-# Controls when the action will run. 
+# Controls when the action will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -19,6 +19,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.allow_failures }}
     name: ${{ matrix.name }}
+    env:
+      VCPKG_DEFAULT_BINARY_CACHE: '${{ github.workspace }}\bin-cache'
     strategy:
       matrix:
         include:
@@ -28,23 +30,25 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      #shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Prepare cache name
-        env: 
-          CACHE_KEY: ${{ matrix.os }}-vs-cache-${{ github.event_name }} # push for master branch pr for others
-
-      - name: Download cache archive
-        id: cache-archive
-        uses: actions/cache@v3
-        with:
-          path: ['.ccache']
-          key: ${{ CACHE_KEY }}
-
-      - name: Setup ccache parameters and show statistics
+      - name: dir
+        shell: cmd
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         run: |
-          ccache --set-config=compression=true
-          ccache --set-config=cache_dir=${GITHUB_WORKSPACE}/.ccache
-          ccache --show-stats
-          ccache -p
+          rmdir /S /Q build
+          echo "hello ${{ env.VCPKG_INSTALLATION_ROOT }}"
+          echo "vc: ${VCPKG_INSTALLATION_ROOT}"
+          echo "vc: %VCPKG_INSTALLATION_ROOT%"
+          mkdir %VCPKG_DEFAULT_BINARY_CACHE%
+          cmake -B build -S . -DVCPKG_TARGET_TRIPLET=x64-windows-release -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\scripts\buildsystems\vcpkg.cmake
+          dir
+          dir %VCPKG_DEFAULT_BINARY_CACHE%
+
+      - name: Every time
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ${{ env.VCPKG_DEFAULT_BINARY_CACHE }}
