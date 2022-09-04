@@ -28,9 +28,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      shell: cmd
+      - name: dir
+        shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - run: dir
-      - run: echo ${{ matrix.os }}
-      - run: echo ${{ matrix.allow_failures }}
+        - run: dir
+        - run: echo ${{ matrix.os }}
+        - run: echo ${{ matrix.allow_failures }}
 
