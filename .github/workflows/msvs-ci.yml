@@ -19,6 +19,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.allow_failures }}
     name: ${{ matrix.name }}
+    env:
+      VCPKG_DEFAULT_BINARY_CACHE: '${{ github.workspace }}\bin-cache'
     strategy:
       matrix:
         include:
@@ -40,7 +42,6 @@ jobs:
           echo "hello ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "vc: ${VCPKG_INSTALLATION_ROOT}"
           echo "vc: %VCPKG_INSTALLATION_ROOT%"
-          set VCPKG_DEFAULT_BINARY_CACHE=%cd%\vcpkg-cache
           mkdir %VCPKG_DEFAULT_BINARY_CACHE%
           cmake -B build -S . -DVCPKG_TARGET_TRIPLET=x64-windows-release -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\scripts\buildsystems\vcpkg.cmake
           dir
