@@ -33,11 +33,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: dir
-        shell: pwsh
+        shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         run: |
           rmdir /S /Q build
           echo "hello ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "vc: $VCPKG_INSTALLATION_ROOT"
-          echo "vc: $env:VCPKG_INSTALLATION_ROOT"
+          echo "vc: %%VCPKG_INSTALLATION_ROOT%%"
           cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_INSTALLATION_ROOT\scripts\buildsystems\vcpkg.cmake
