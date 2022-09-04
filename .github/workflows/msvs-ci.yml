@@ -45,3 +45,9 @@ jobs:
           cmake -B build -S . -DVCPKG_TARGET_TRIPLET=x64-windows-release -DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%\scripts\buildsystems\vcpkg.cmake
           dir
           dir %VCPKG_DEFAULT_BINARY_CACHE%
+
+      - name: upload artifact
+      - uses: actions/upload-artifact@v3
+        with:
+        name: my-artifact
+        path: %VCPKG_DEFAULT_BINARY_CACHE%
