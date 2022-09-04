@@ -50,4 +50,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ${{ VCPKG_DEFAULT_BINARY_CACHE }}
+          path: ${{ env.VCPKG_DEFAULT_BINARY_CACHE }}
