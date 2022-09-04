@@ -19,7 +19,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.allow_failures }}
     name: ${{ matrix.name }}
-    shell: cmd
     strategy:
       matrix:
         include:
@@ -34,11 +33,11 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: dir
-      #  shell: cmd
+        shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         run: | 
           dir
           echo "hello"
-        #- run: echo ${{ matrix.os }}
-        #- run: echo ${{ matrix.allow_failures }}
+          echo ${{ matrix.os }}
+          echo ${{ matrix.allow_failures }}
 
