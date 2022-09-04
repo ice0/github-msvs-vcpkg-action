@@ -37,5 +37,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         run: |
           rmdir /S /Q build
-          echo "hello"
-          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_INSTALLATION_ROOT }}\scripts\buildsystems\vcpkg.cmake
+          echo "hello ${{ env.VCPKG_INSTALLATION_ROOT }}"
+          echo "vc: $VCPKG_INSTALLATION_ROOT"
+          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=$VCPKG_INSTALLATION_ROOT\scripts\buildsystems\vcpkg.cmake
