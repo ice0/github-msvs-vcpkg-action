@@ -1,7 +1,9 @@
 {
-  "name": "test",
-  "version": "1.0",
+  "name": "fibo",
+  "version-string": "0.1.0",
   "dependencies": [
-    "zlib"
+    "cxxopts",
+    "fmt",
+    "range-v3"
   ]
 }

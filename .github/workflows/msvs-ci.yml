@@ -35,9 +35,7 @@ jobs:
       - name: dir
         shell: cmd
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        run: | 
-          dir
+        run: |
+          rmdir /S /Q build
           echo "hello"
-          echo ${{ matrix.os }}
-          echo ${{ matrix.allow_failures }}
-
+          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${{ VCPKG_INSTALLATION_ROOT }}\scripts\buildsystems\vcpkg.cmake
