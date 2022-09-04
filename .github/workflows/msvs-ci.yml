@@ -38,4 +38,4 @@ jobs:
         run: |
           rmdir /S /Q build
           echo "hello"
-          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${{ VCPKG_INSTALLATION_ROOT }}\scripts\buildsystems\vcpkg.cmake
+          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_INSTALLATION_ROOT }}\scripts\buildsystems\vcpkg.cmake
