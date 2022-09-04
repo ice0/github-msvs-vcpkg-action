@@ -39,4 +39,5 @@ jobs:
           rmdir /S /Q build
           echo "hello ${{ env.VCPKG_INSTALLATION_ROOT }}"
           echo "vc: $VCPKG_INSTALLATION_ROOT"
-          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=$VCPKG_INSTALLATION_ROOT\scripts\buildsystems\vcpkg.cmake
+          echo "vc: $env:VCPKG_INSTALLATION_ROOT"
+          cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_INSTALLATION_ROOT\scripts\buildsystems\vcpkg.cmake
