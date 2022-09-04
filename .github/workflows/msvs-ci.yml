@@ -17,14 +17,12 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.allow_failures }}
     name: ${{ matrix.name }}
     strategy:
       matrix:
         include:
         - os: windows-2022
           name: VS 2022 (Windows 2022)
-          allow_failures: false
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -39,7 +37,7 @@ jobs:
         id: cache-archive
         uses: actions/cache@v3
         with:
-          path: ['.ccache']
+          path: '.ccache'
           key: ${{ CACHE_KEY }}
 
       - name: Setup ccache parameters and show statistics
